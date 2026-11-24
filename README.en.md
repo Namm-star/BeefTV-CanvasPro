@@ -6,7 +6,9 @@ Windows installers and model packs for a CanvasPro-modified build of [BeefTV](ht
 
 [Download the installer and configuration](https://github.com/Namm-star/BeefTV-CanvasPro/releases/latest)
 
-The build is based on BeefTV v2.2.5 and preserves CanvasPro model packs, protocol mappings, result-download proxy settings and ComfyUI fixes. Engine 3 adds asynchronous temporary reference-media uploads for the adapted Jimeng protocols. The bundled pack has 349 models: 28 text, 45 image and 276 video.
+The build is based on BeefTV v2.2.5 and preserves CanvasPro model packs, protocol mappings, result-download proxy settings and ComfyUI fixes. Engine 3 adds asynchronous temporary reference-media uploads for the adapted Jimeng protocols. The bundled pack has 393 models: 33 text, 59 image and 301 video.
+
+Failures now retain their execution phase. A connection or proxy TLS failure proven to occur before dispatch allows retry; uncertain submissions retain original-task protection. Image, video and audio download failures keep the original task ID and offer continued retrieval instead of reporting a model-key failure or user cancellation. Explicit authentication, quota, moderation, parameter and local-storage failures retain their specific causes. Diagnostics identify direct or proxy transport and its DNS, TLS, request or response phase.
 
 This release fixes completed asynchronous images being reported as model-service failures when artifact downloads fail. Recovery queries the original task using its frozen protocol and downloads its output without submitting generation again. Historical unrecoverable conclusions can be rechecked when the exact original task ID and query protocol remain available. Explicit generation failure ends recovery, and a mismatched returned task ID stops retrieval.
 
@@ -18,7 +20,7 @@ The installer targets Windows x64 and is unsigned. It contains no user API keys,
 
 After upgrading, existing imported model packs remain active until replaced. Preview and apply the bundled update in model settings, or import the JSON attached to the release. Running tasks retain their original protocol snapshots.
 
-Download `BeefTV-v2.2.5-windows-amd64-artifact-recovery-20261118-setup.exe`, save your canvas and exit BeefTV before installing the update. Build commit: `428fd98`. Model pack: `20261117-suanli-maintenance-add-10-rates-counts-v3-pack1`; users already on this pack do not need to import it again. Verify release assets with `SHA256SUMS.txt`. Existing CanvasPro and other user-key connections are retained. Nodes configured with the retired upstream account require a different model service.
+Download `BeefTV-v2.2.5-windows-amd64-failure-classification-20261124-setup.exe`, save your canvas and exit BeefTV before installing the update. Build commit: `dd6e667`. Model pack: `20261123-suanli-v1-pack1`; users already on this pack do not need to import it again. Verify release assets with `SHA256SUMS.txt`. Existing CanvasPro and other user-key connections are retained. Nodes configured with the retired upstream account require a different model service.
 
 For a retrieval failure, use Continue retrieval on the original task before considering regeneration. The recovery fix requires updating the application; importing the model pack alone does not update execution logic.
 
